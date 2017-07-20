@@ -31,8 +31,9 @@ def to_mhz_per_km(band_ghz, r_m, precision=2):
     
     """
     # MODIFY IN HERE ONLY
-    
-    
+    band_ghz = ''.join(i for i in band_ghz if i.isdigit() or i in ['.','-'])
+    r_m = ''.join(i for i in r_m if i.isdigit() or i in ['.','-'])
+    return "{0:.{1}f}".format((float(band_ghz) * 1000000)/float(r_m),precision) + ' MHz/km'
     # END MODIFY IN HERE ONLY
  
 
