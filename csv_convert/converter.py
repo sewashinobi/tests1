@@ -8,7 +8,7 @@ output_file_name = input('Input output file name')
 result_file_handle = open(output_file_name, 'w+')
 result_file_handle.write('X,Y,Z,RES\n')
 
-# falg to know when valid content starts
+# flag to know when valid content starts
 content_starts = False
 
 # open input file for reading
