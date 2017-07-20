@@ -1,0 +1,51 @@
+Write a script to convert a text file containing measurement data
+to a CSV file.
+
+The input file will be of the form:
+
+    #comment
+    MEASURE:
+        POINT:
+            X: <float or int>
+            Y: <float or int>
+            Z: <float or int>
+            RES: <float or int>
+        POINT:
+            ...
+
+The file can contain any number of "POINT" blocks, but only one "MEASURE" 
+block. Only include results after the "MEASURE" block starts. Comments
+can appear at the end of lines or on separate lines.
+
+Some of the data may not be clean, so the order and case of the input items 
+(X, Y, Z, RES) is not guaranteed.
+
+The script should convert the input file to a CSV with the following format:
+
+X, Y, Z, RES
+<point x>, <point y>,<point z>,<point res>
+...
+
+e.g.
+
+#This is a test report for xxx
+MEASURE:
+    POINT:
+        X: 30
+        Y: 40
+        Z: 50
+        RES: 0.03
+    POINT:
+        X: 30
+        Y: 42
+        Z: 50
+        RES: -0.1
+
+to
+
+X,Y,Z,RES
+30,40,50,0.03
+30,42,50,-0.1
+
+There are two sample input files in this folder. The code should be able to
+successfully convert both files.

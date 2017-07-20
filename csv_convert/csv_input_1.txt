@@ -1,0 +1,12 @@
+#This is a test report for xxx
+MEASURE:
+    POINT:
+        X: 30
+        Y: 40
+        Z: 50
+        RES: 0.03
+    POINT:
+        X: 30
+        Y: 42
+        Z: 50
+        RES: -0.1

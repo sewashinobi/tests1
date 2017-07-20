@@ -1,0 +1,43 @@
+
+# Invalid point removed
+# from data.
+POINT:
+X: 333
+Y: 333
+Z: 333
+RES: -3
+
+
+MEASURE:
+POINT:
+X: 265
+y: 104
+Z: 150
+res: 236# Comment
+POINT:
+res: 92
+X: 102
+Z: 197
+y: 240
+# 2017-05-23
+POINT: # MANUAL ENTRY
+x:   245
+    res: 112.123
+Y: 297.3
+Z : 179
+POINT:
+X: 279
+    y: 44
+res: 183.000005
+   Z  : 10.3
+POINT:
+X: 182
+y: 223
+Z: 191
+res: 220
+POINT:
+X: 61
+y: 241
+Z: 37
+res: 110
+# END FILE
