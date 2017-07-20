@@ -72,7 +72,16 @@ class PythonTests(unittest.TestCase):
 
         class forwarding_property(object):
             def __init__(self, path):
-                pass
+                self.objectName,self.attrName = path.split('.')
+
+            def __get__(self, instance, owner=None):
+                return getattr(getattr(instance, self.objectName), self.attrName)
+
+            def __set__(self, instance, value):
+                setattr(getattr(instance, self.objectName), self.attrName, value)
+
+            def __delete__(self, instance):
+                delattr(getattr(instance, self.objectName), self.attrName)
 
         # END MODIFY IN HERE ONLY
 
