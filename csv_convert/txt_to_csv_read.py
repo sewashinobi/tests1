@@ -37,6 +37,7 @@ def txt_file_to_csv(file_name):
     return point_values
     
 if __name__ == '__main__':
+    # Enter input file name here
     file_name = 'csv_input_2.txt'
     val = txt_file_to_csv(file_name)
     
