@@ -9,19 +9,16 @@ class CSVConvertor:
 
 
     def __init__(self,filename):
-        '''
-
-        :return:
+        '''Constructor
         '''
         self.input_file_name = filename
         self.fileObj = open(self.input_file_name,'r')
         self.output_file_name = self.input_file_name.replace('input','output').replace('txt','csv')
 
     def process_point(self,point_list):
-        '''
+        '''Return a dictionary representing a single point
 
-        :param point_list:
-        :return: a dictionary representing a point
+        point_list : list representing a point
         '''
         print point_list
         point_dict = {val.split(": ")[0].rstrip():''.join(i for i in val.split(": ")[1] if i.isdigit() or i in ['.','-']) for val in point_list}
@@ -29,9 +26,7 @@ class CSVConvertor:
 
 
     def get_all_points(self):
-        '''
-
-        :return:
+        '''Return a list of dictionary items where each dictionary item represents a point
         '''
         lines = self.fileObj.readlines()
         #remove lines with comments
@@ -50,18 +45,16 @@ class CSVConvertor:
 
 
     def generate_csv_file(self):
-        '''
-
-        :return:
+        '''Main entry point
         '''
         points = self.get_all_points()
         self.create_csv_file(points)
+        # close input file
+        self.fileObj.close()
 
     def create_csv_file(self,points):
-        '''
-
-        :param points:
-        :return:
+        '''Helper to create CSV File
+        points: A list of points where each element in the list is a dictionary representing a point
         '''
         csvfile = open(self.output_file_name, 'wb')
         fieldnames = ['X', 'Y','Z','RES']
@@ -70,6 +63,7 @@ class CSVConvertor:
         for point in points:
             print point
             writer.writerow({'X':point['x'] , 'Y': point['y'],'Z':point['z'],'RES':point['res']})
+        #close output file
         csvfile.close()
 
 if __name__ == "__main__":
