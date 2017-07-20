@@ -7,19 +7,23 @@
 #
 import unittest
 
+from copy import deepcopy
+
+
 class PythonTests(unittest.TestCase):
     def test_multipliers(self):
         # Fix this loop and function definition so that the test
         # passes. 'multipliers' should become a list of functions. The
         # first should be a function that multiplies its parameter by
         # 0, the second by 1, the third by 2, and so on.
-        
+
         # MODIFY IN HERE ONLY
-        
+
         multipliers = []
         for val in range(6):
             multiplier = lambda x: x * val
-            multipliers.append(multiplier)
+            multiplier_copy = deepcopy(multiplier(val))
+            multipliers.append(multiplier_copy)
 
         # END MODIFY IN HERE ONLY
 
@@ -38,9 +42,12 @@ class PythonTests(unittest.TestCase):
         # MODIFY IN HERE ONLY
         
         class Person(object):
-            def __init__(self, name, children=[]):
+            def __init__(self, name, children=None):
                 self.name = name
-                self.children = children
+                if not children:
+                    self.children = []
+                else:
+                    self.children = children
 
             def add_child(self, child):
                 self.children.append(child)
@@ -72,7 +79,9 @@ class PythonTests(unittest.TestCase):
 
         class forwarding_property(object):
             def __init__(self, path):
-                pass
+                B.__setattr__(name='blah',
+                              value=A.__getattribute__(path.split('.')[1]))
+
 
         # END MODIFY IN HERE ONLY
 
@@ -81,23 +90,22 @@ class PythonTests(unittest.TestCase):
         # b.obj.some_attribute.
         class A(object):
             some_attribute = 'old_value'
+
             def __init__(self):
                 self.c_inst = C()
 
-        
         class B(object):
             # The 'blah' attribute should mirror 'obj.some_attribute'
             blah = forwarding_property('obj.some_attribute')
             c_size = forwarding_property('obj.c_inst.size')
+
             def __init__(self):
                 self.obj = A()
-        
-        
+
         class C(object):
             def __init__(self):
                 self.size = 3
-        
-        
+
         # Here's the test:
         b = B()
         self.assertEqual(b.blah, 'old_value')
