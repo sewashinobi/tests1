@@ -18,7 +18,9 @@ class PythonTests(unittest.TestCase):
         
         multipliers = []
         for val in range(6):
-            multiplier = lambda x: x * val
+            # Due to python's lazy evaluation val will be same when
+            # the actual multiplier func is called. So provide the input val
+            multiplier = lambda x, val=val: x * val
             multipliers.append(multiplier)
 
         # END MODIFY IN HERE ONLY
@@ -38,9 +40,12 @@ class PythonTests(unittest.TestCase):
         # MODIFY IN HERE ONLY
         
         class Person(object):
-            def __init__(self, name, children=[]):
+            def __init__(self, name, children=None):
                 self.name = name
-                self.children = children
+                if not children:
+                    self.children = []
+                else:
+                    self.children = children
 
             def add_child(self, child):
                 self.children.append(child)
@@ -73,7 +78,7 @@ class PythonTests(unittest.TestCase):
         class forwarding_property(object):
             def __init__(self, path):
                 pass
-
+            
         # END MODIFY IN HERE ONLY
 
         # For example, instances of 'B' contain an instance of 'A'
@@ -100,6 +105,7 @@ class PythonTests(unittest.TestCase):
         
         # Here's the test:
         b = B()
+        print b.blah
         self.assertEqual(b.blah, 'old_value')
         b.blah = 'new_value'
         b.c_size = 42

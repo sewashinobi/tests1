@@ -31,12 +31,46 @@ def to_mhz_per_km(band_ghz, r_m, precision=2):
     
     """
     # MODIFY IN HERE ONLY
-    
-    
+    st = ''
+    for ch in band_ghz:
+        try:
+            int(ch)
+        except:
+            pass
+        else:
+            st += ch
+        if ch == '.':
+            st += ch
+
+    band_ghz = float(st)
+    band_mhz = band_ghz * 1000
+    st = ''
+    for ch in r_m:
+        try:
+            int(ch)
+        except:
+            pass
+        else:
+            st += ch
+        if ch == '.':
+            st += ch
+    r_m = float(st)
+    r_km = r_m / 1000
+
+    result = band_mhz/r_km
+    res = round(result, precision)
+    if precision == 0:
+        res = int(res)
+    res = str(res)
+    if len(res.split('.')[-1]) < precision:
+        for _ in xrange(precision - len(res.split('.')[-1])):
+            res += '0'
+    return res + ' MHz/km'
     # END MODIFY IN HERE ONLY
  
 
 if __name__ == '__main__':
+
     import doctest
     doctest.testmod()
 
