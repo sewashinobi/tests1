@@ -38,8 +38,9 @@ def to_mhz_per_km(band_ghz, r_m, precision=2):
     
     mhz_km=band_mhz/r_km
     #mhz_km="{:."+str(precision)+"f}".format(mhz_km)
-    return str(round(mhz_km,precision))+" MHz/km"
-    
+    mhz_km='{:.{prec}f}'.format(mhz_km, prec=precision)
+    #return str(round(mhz_km,precision))+" MHz/km"
+    return mhz_km+" MHz/km"
     # END MODIFY IN HERE ONLY
  
 
