@@ -31,7 +31,14 @@ def to_mhz_per_km(band_ghz, r_m, precision=2):
     
     """
     # MODIFY IN HERE ONLY
+    band_ghz=band_ghz.upper()
+    r_m=r_m.upper()
+    band_mhz=float(band_ghz.split('GHZ')[0])*1000
+    r_km=float(r_m.split('M')[0])/1000
     
+    mhz_km=band_mhz/r_km
+    #mhz_km="{:."+str(precision)+"f}".format(mhz_km)
+    return str(round(mhz_km,precision))+" MHz/km"
     
     # END MODIFY IN HERE ONLY
  

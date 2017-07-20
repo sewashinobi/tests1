@@ -18,8 +18,9 @@ class PythonTests(unittest.TestCase):
         
         multipliers = []
         for val in range(6):
-            multiplier = lambda x: x * val
-            multipliers.append(multiplier)
+            def func(val):
+                return lambda x: x * val            
+            multipliers.append(func(val))
 
         # END MODIFY IN HERE ONLY
 
@@ -27,9 +28,10 @@ class PythonTests(unittest.TestCase):
         # the 5 times table.
         expected_result = [0, 5, 10, 15, 20, 25]
         actual_result = []
+        
         for multiplier in multipliers:
             actual_result.append(multiplier(5))
-
+        
         self.assertEqual(actual_result, expected_result)
 
     def test_person(self):
