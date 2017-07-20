@@ -7,6 +7,7 @@
 #
 import unittest
 
+
 class PythonTests(unittest.TestCase):
     def test_multipliers(self):
         # Fix this loop and function definition so that the test
@@ -18,8 +19,8 @@ class PythonTests(unittest.TestCase):
         
         multipliers = []
         for val in range(6):
-            multiplier = lambda x: x * val
-            multipliers.append(multiplier)
+            multiplier = "lambda x : x * %d" % val
+            multipliers.append(eval(multiplier))
 
         # END MODIFY IN HERE ONLY
 
@@ -40,7 +41,10 @@ class PythonTests(unittest.TestCase):
         class Person(object):
             def __init__(self, name, children=[]):
                 self.name = name
-                self.children = children
+                if children != []:
+                    self.children = children
+                else:
+                    self.children = []
 
             def add_child(self, child):
                 self.children.append(child)
@@ -72,7 +76,12 @@ class PythonTests(unittest.TestCase):
 
         class forwarding_property(object):
             def __init__(self, path):
-                pass
+                p = C()
+                setattr(A,getattr(C, 'size'))
+                obj = A()
+
+                val = eval(path+'()')
+                setattr(B, 'blah', val)
 
         # END MODIFY IN HERE ONLY
 
