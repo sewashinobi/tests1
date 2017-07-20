@@ -1,4 +1,4 @@
-# Take input file names
+# take input file names
 from typing import Dict, Union
 
 input_file_name = input('Input input file name')
